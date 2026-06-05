@@ -16,8 +16,8 @@ FindNeighbors.dims <- 1:30
 
 # ---- read in data ----
 path <- here::here()
-indir <- normalizePath(file.path(path, "../../processed/seurat_droplet_19-3-2026_gh_cli"))
-outdir <- normalizePath(file.path(path, "../../processed/seurat_SC-vs-Human_2-5-2026_gh_filtered"))
+indir <- normalizePath(file.path(path, "../../processed/seurat_droplet-qc_26-5-2026_gh_cli"))
+outdir <- normalizePath(file.path(path, "../../processed/seurat_figS4F-I_2-5-2026_gh"))
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
 
 data.dirs <- list.dirs(indir, recursive = FALSE)
@@ -824,42 +824,3 @@ sbc.avg.expr_df %>%
     quote = FALSE,
     sep = "\t"
   )
-
-# ---- PLOTS FOR CAROLINE and DAVID ----
-filtered$caroline <- case_when(
-  filtered$cell_type == "beta" ~ filtered$beta_cell,
-  filtered$cell_type == "alpha" ~ filtered$alpha_cell,
-  filtered$cell_type == "delta" ~ filtered$delta_cell,
-  TRUE ~ filtered$cell_type
-)
-
-# log normalise rna for better plotting
-filtered <- NormalizeData(filtered, assay = "RNA", verbose = FALSE)
-filtered <- ScaleData(filtered, assay = "RNA", verbose = FALSE )
-
-caroline_markers <- c("RAMP1", "RAMP2", "RAMP3", "GIPR", "GLP1R")
-
-DimPlot(filtered, group.by = "caroline", reduction = "umap.filtered", label = TRUE, raster = FALSE)
-ggsave(file.path(outdir, "DimPlots", "caroline_labelled_cell-type.png"), width = 11, height = 10)
-
-DotPlot(filtered, group.by = "caroline", assay = "RNA", features = caroline_markers)
-ggsave(file.path(outdir, "DotPlots", "caroline_combined.png"), width = 7, height = 12)
-
-VlnPlot(filtered, group.by = "caroline", assay = "RNA", features = caroline_markers, stack = TRUE) +
-  NoLegend() 
-ggsave(file.path(outdir, "VlnPlots", "caroline_combined.png"), width = 7, height = 12)
-
-for (c in caroline_markers) {
-  FeaturePlot(filtered, reduction = "umap.filtered", features = c, raster = FALSE)
-  ggsave(file.path(outdir, "FeaturePlots", paste0(c, ".png")), width = 11, height = 10)
-}
-
-
-FeaturePlot(filtered, features = "CBLN4", reduction = "umap.filtered", raster = FALSE)
-ggsave(file.path(outdir, "FeaturePlots", "CBLN4.png"), width = 11, height = 10)
-DotPlot(filtered, group.by = "caroline", features = c("CBLN4", "GHRL"), assay = "RNA")
-ggsave(file.path(outdir, "DotPlots", "CBLN4_GHRL.png"), width = 5, height = 10)
-VlnPlot(filtered, group.by = "caroline", features = "CBLN4", assay = "RNA") +
-  NoLegend()
-ggsave(file.path(outdir, "VlnPlots", "CBLN4.png"))
-
