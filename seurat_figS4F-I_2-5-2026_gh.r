@@ -53,8 +53,6 @@ merged@meta.data$condition <- ifelse(
 )
 
 # ---- Start analysis ----
-pdf(file.path(outdir, "seurat_SC-vs-Human_plots.pdf"), width = 10, height = 6)
-
 merged <- SCTransform(merged, vars.to.regress = "percent.mt", verbose = FALSE)
 merged <- RunPCA(merged, verbose = FALSE)
 print(ElbowPlot(merged, ndims = 30))
@@ -221,7 +219,6 @@ print(VlnPlot(
       "H3" = "#003e86"
     )
   ) +
-  labs(title = t) +
   NoLegend()
 )
 
@@ -768,7 +765,7 @@ sbc.agg.expr <- AggregateExpression(beta, group.by = "beta_cell", assay = "RNA",
 sbc.agg.expr_df <- sbc.agg.expr %>% 
   as.matrix() %>% 
   as.data.frame() %>% 
-  rename("sc-beta" = "sc_beta") %>% 
+  rename("sc_beta" = "sc-beta") %>% 
   rownames_to_column(var = "gene") %>%
   select(gene, sc_beta) %>% 
   arrange(desc(sc_beta))
@@ -798,7 +795,7 @@ sbc.avg.expr <- AverageExpression(beta, group.by = "beta_cell", assay = "RNA", v
 sbc.avg.expr_df <- sbc.avg.expr %>% 
   as.matrix() %>% 
   as.data.frame() %>% 
-  rename("sc-beta" = "sc_beta") %>% 
+  rename("sc_beta" = "sc-beta") %>% 
   rownames_to_column(var = "gene") %>%
   select(gene, sc_beta) %>% 
   arrange(desc(sc_beta)) %>% 
