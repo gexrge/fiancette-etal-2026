@@ -266,10 +266,10 @@ DimPlot(
   )
 )
 
-# group H1 and H3 beta cell sub populations for cleaner plotting
+# group H1 and H3 beta cell replicates for cleaner plotting
 integrated$beta_cell_condition <- ifelse(integrated$cell_type == "beta", as.character(integrated$source), NA)
 
-# factorise beta_cell_type column for cleaner plotting
+# factorise beta_cell_condition column for cleaner plotting
 integrated$beta_cell_condition <- factor(
   integrated$beta_cell_condition,
   levels = c("bandesh", "fasolino", "kang", "H1", "H3")
@@ -394,7 +394,7 @@ ggsave(
   width = 14, height = 4
 )
 
-# Load in lickert contaminants for 
+# Load in lickert contaminants 
 lickert_contaminants <- fread(
   file.path(indir, "../..", "raw_data", "Lickert_contaminants.csv"),
   select = c("gene", "category"),
@@ -416,6 +416,7 @@ for (bc in unique(beta$beta_cell_origin)) {
     lickert_contaminants[[col_name]] <- lc_expr.pct[lickert_contaminants$gene]
     
   }
+  # free up ram
   remove(beta.bc, genes, lc_expr, lc_expr.pct, col_name)
 }
 lickert_contaminants <- lickert_contaminants[order(lickert_contaminants$category),]
