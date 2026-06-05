@@ -29,7 +29,7 @@ options(future.globals.maxSize = 80 * 1024^3) # 1024^3 = 1Gb
 # args
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 3) {
-  stop("Usage: Rscript seurat_droplet_12-3-2026_gh_cli.R <[cellranger|starsolo]> <indir> <outdir>")
+  stop("Usage: Rscript seurat_droplet-qc_26-5-2026_gh_cli.R <[cellranger|starsolo]> <indir> <outdir>")
 }
 
 # ---- SETTINGS ----
