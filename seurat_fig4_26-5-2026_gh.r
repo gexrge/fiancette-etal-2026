@@ -1,5 +1,6 @@
 library(Seurat)
 library(patchwork)
+library(cowplot)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -324,7 +325,7 @@ print(VlnPlot(
 )
 
 # calculate pairwise significance values inbetween each group
-pairs <- combn(levels(beta$beta_cell_origin), 2, simplify = FALSE)
+pairs <- combn(levels(beta$source), 2, simplify = FALSE)
 done <- lapply(pairs, function(p) {
   FindMarkers(
     beta,
@@ -332,7 +333,7 @@ done <- lapply(pairs, function(p) {
     layer = "data",
     features = "INS",
     verbose = FALSE,
-    group.by = "beta_cell_origin",
+    group.by = "source",
     ident.1 = p[1],
     ident.2 = p[2],
     logfc.threshold = 0
@@ -402,9 +403,9 @@ lickert_contaminants <- fread(
 )
 
 # for SBCs and PBCs, calculate pct expressed for each contaminant gene
-for (bc in unique(beta$beta_cell_origin)) {
+for (bc in unique(beta$source)) {
   
-  beta.bc <- subset(beta, beta_cell_origin == bc)
+  beta.bc <- subset(beta, source == bc)
   genes <- intersect(lickert_contaminants$gene, rownames(beta.bc))
   lc_expr <- GetAssayData(beta.bc[genes, ], assay = "RNA", layer = "data")
   
