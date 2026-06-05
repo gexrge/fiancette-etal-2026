@@ -3,7 +3,6 @@ library(patchwork)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-library(clusterProfiler)
 library(enrichplot)
 library(tibble)
 library(data.table)
@@ -44,7 +43,7 @@ merged <- merge(
 )
 
 # extracting experiment from cell id
-merged@meta.data$experiment <- sapply(strsplit(rownames(filtered@meta.data), "_"), "[", 1)
+merged@meta.data$experiment <- sapply(strsplit(rownames(merged@meta.data), "_"), "[", 1)
 
 # extracting condition
 merged@meta.data$condition <- ifelse(
