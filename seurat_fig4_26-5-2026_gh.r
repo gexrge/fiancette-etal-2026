@@ -22,8 +22,8 @@ FindNeighbors.dims <- 1:30
 
 # ---- read in data ----
 path <- here::here()
-indir <- normalizePath(file.path(path, "../../processed/seurat_droplet_11-5-2026_gh_cli"))
-outdir <- normalizePath(file.path(path, "../../processed/seurat_SC-vs-Human_2-5-2026_gh_integrated.v3"))
+indir <- normalizePath(file.path(path, "../../processed/seurat_droplet-qc_26-5-2026_gh_cli"))
+outdir <- normalizePath(file.path(path, "../../processed/seurat_fig4_26-5-2026_gh"))
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
 
 data.dirs <- list.dirs(indir, recursive = FALSE)
