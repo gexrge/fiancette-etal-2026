@@ -38,22 +38,22 @@ The script performs:
 
 The script reads processed Seurat objects from:
 
-- ../../processed/seurat_qc_260722_gh_cli/
+- `../../processed/seurat_qc_260722_gh_cli/`
   
 It also requires supporting files from the project, including:
 
-- ../../raw_data/Lickert_contaminants.csv
-- ../../raw_data/*.grp
+- `../../raw_data/Lickert_contaminants.csv`
+- `../../raw_data/*.grp`
 
 #### Output
 
 Results are written to:
 
-- ../../processed/seurat_SC-vs-Human_260717_gh_integrated.v6/
+- `../../processed/seurat_SC-vs-Human_260717_gh_integrated.v6/`
   
 The output directory contains plots, tables, heatmaps, PCA results, differential-expression results, and the final integrated Seurat object:
 
-- integrated.v6.RDS
+- `integrated.v6.RDS`
 
 ### seurat_SC-vs_human_260824_gh_integrated.v7.R
 
