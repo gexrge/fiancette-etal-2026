@@ -72,43 +72,43 @@ The workflow applies:
 
 The script generates QC reports and per-experiment metrics, then returns a final merged Seurat object ready for downstream integration and analysis.
 
-    #### utils/malat1_function.R
-    
-    Defines a function for estimating a normalized MALAT1 expression threshold. The function uses density estimation and diagnostic plots to identify a threshold for filtering low-quality cells.
-    
-    The same utility is also available at:
-    
-    https://github.com/BaderLab/malatin/tree/v1.0.0
+#### utils/malat1_function.R
 
-    #### utils/seurat_soupx_22-2-2026_gh.r
-    
-    Defines a function for correcting ambient RNA contamination using SoupX.
-    
-    The function:
-    
-    - Creates a SoupX object from raw and filtered counts.
-    - Estimates or sets the contamination fraction.
-    - Adjusts the expression matrix.
-    - Creates and returns a new Seurat object with corrected counts.
-      
-    The same utility is also available at:
-    
-    https://github.com/constantAmateur/SoupX
-    
-    #### utils/seurat_doubletfinder_20-2-2026_gh.r
-    
-    Defines a function for detecting and removing predicted doublets from a Seurat object using DoubletFinder.
-    
-    The function:
-    
-    - Identifies the optimal DoubletFinder parameters.
-    - Estimates the expected doublet rate.
-    - Removes cells classified as doublets.
-    - Returns the filtered Seurat object and selected parameters.
-    
-    The same utility is also available at:
-    
-    https://github.com/chris-mcginnis-ucsf/DoubletFinder
+Defines a function for estimating a normalized MALAT1 expression threshold. The function uses density estimation and diagnostic plots to identify a threshold for filtering low-quality cells.
+
+The same utility is also available at:
+
+https://github.com/BaderLab/malatin/tree/v1.0.0
+
+#### utils/seurat_soupx_22-2-2026_gh.r
+
+Defines a function for correcting ambient RNA contamination using SoupX.
+
+The function:
+
+- Creates a SoupX object from raw and filtered counts.
+- Estimates or sets the contamination fraction.
+- Adjusts the expression matrix.
+- Creates and returns a new Seurat object with corrected counts.
+  
+The same utility is also available at:
+
+https://github.com/constantAmateur/SoupX
+
+#### utils/seurat_doubletfinder_20-2-2026_gh.r
+
+Defines a function for detecting and removing predicted doublets from a Seurat object using DoubletFinder.
+
+The function:
+
+- Identifies the optimal DoubletFinder parameters.
+- Estimates the expected doublet rate.
+- Removes cells classified as doublets.
+- Returns the filtered Seurat object and selected parameters.
+
+The same utility is also available at:
+
+https://github.com/chris-mcginnis-ucsf/DoubletFinder
 
 ## Notes
 
