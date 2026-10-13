@@ -4,6 +4,7 @@ This directory contains scripts used for single-cell RNA-seq quality control, pr
 
 ## Directory structure
 
+```text
 reviewers-comments/
 ├── README.md
 ├── seurat_SC-vs_human_260717_gh_integrated.v6.R
@@ -12,6 +13,7 @@ reviewers-comments/
     ├── malat1_function.R
     ├── seurat_doubletfinder_20-2-2026_gh.r
     └── seurat_soupx_22-2-2026_gh.r
+```
 
 ## Scripts
 
